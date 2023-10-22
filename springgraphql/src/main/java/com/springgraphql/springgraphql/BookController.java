@@ -33,6 +33,13 @@ public class BookController{
         return bookRepository.findById(Long.valueOf(id));
     }
 
+    @QueryMapping(name = "searchBooks")
+    public List<Book> searchBooks(@Argument int limit, @Argument int offset) {
+        return bookRepository.findLimitedBooks(limit, offset);
+    }
+
+
+
     @MutationMapping
     public Book createBook(@Argument InputCreateBook inputCreateBook) {
         Book newBook = new Book();
